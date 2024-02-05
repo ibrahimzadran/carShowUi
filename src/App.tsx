@@ -2,7 +2,7 @@ import { AppBar, Container, Toolbar, Typography } from "@mui/material"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import CarList from "./component/CarList";
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 
 
