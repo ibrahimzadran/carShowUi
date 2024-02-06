@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Car, CarResponse } from "./types";
+import { Car, CarEntry, CarResponse } from "./types";
 
 export const getCars = async(): Promise<CarResponse[]> =>{
     const response = await axios.get(`${import.meta.env.VITE_API_URL}/cars`)
@@ -21,5 +21,17 @@ export const addCar = async (car:Car):Promise<CarResponse> =>
             'Content-Type' : 'application/json'
         }
     });
+
+    return response.data
+}
+
+export const updateCar= async (carEntry:CarEntry) =>{
+
+console.log(`${import.meta.env.VITE_API_URL}/
+${carEntry.url}}`)
+    const response = await axios.put(`${import.meta.env.VITE_API_URL}/
+    ${carEntry.url}`,carEntry.car,{headers:{
+        'Content-Type ': 'application/json'
+    }});
     return response.data
 }

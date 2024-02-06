@@ -1,13 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { CarResponse } from "../types";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, GridCellParams, GridColDef } from "@mui/x-data-grid";
 import { Button, Snackbar } from "@mui/material";
 import { deleteCar, getCars } from "../carapi";
 import { useState } from "react";
 import Confirmation from "./Confirmation";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AddCar from "./AddCar";
+import EditCar from "./EditCar";
 
 
 
@@ -36,6 +37,15 @@ const columns : GridColDef[] =[
     {field: 'registerNumber', headerName: 'Reg.nr.', width: 150},
     {field: 'year', headerName: 'Year', width: 150},
     {field: 'price', headerName: 'Price', width: 150},
+    { field:'edit',
+    headerName:'',
+  width:90,
+ sortable:false,
+filterable:false,
+
+renderCell:(params:GridCellParams)=> 
+<EditCar cardata={params.row} />
+},
     {
       field: "delete",
       headerName: "",
@@ -107,8 +117,6 @@ if(!isSuccess){
          <AddCar />
 
         </>
-       
-        
 
     )
 }
